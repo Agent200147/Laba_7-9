@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mainContainer animate__animated animate__fadeIn">
+        {{ include('components/header.html.twig') }}
+
+{#         {{ render(controller(
+        'App\\Controller\\RegistrationController::register'
+    )) }} #}
+        <div class="posts col-md-9 container ">
+            {% for new in news %}
+                <a href="/news/{{new.id}}"><div class="post animate__animated animate__fadeInUp animate__fast">
+                    <div class="name">{{new.name}}</div>
+                    <div class="annotation">{{new.description}}</div>
+
+                    <div class="low">
+                        <div class="date">{{new.dateLoad|date}}</div> 
+                        <div class="viewsNum">{{new.viewsNum}}<img src="img/com.svg" alt=""></div>
+                    </div>
+                    <div class="linePost col-md-12"></div>
+                </div></a>
+            {% endfor %}
+            <div class="element"></div>
+        </div>
+    </div>
+{% endblock %}
