@@ -38,6 +38,12 @@ class News
     #[ORM\OneToMany(mappedBy: 'new', targetEntity: Comments::class, orphanRemoval: true)]
     private $comments;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $fotopath;
+
+    #[ORM\Column(type: 'boolean')]
+    private $active = false;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -152,5 +158,29 @@ class News
 
     public function __toString(){
         return $this->name;
+    }
+
+    public function getFotopath(): ?string
+    {
+        return $this->fotopath;
+    }
+
+    public function setFotopath(string $fotopath): self
+    {
+        $this->fotopath = $fotopath;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
     }
 }

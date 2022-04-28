@@ -96,7 +96,7 @@ form > div{
 	border-radius: 5px;
 	font-size: 20px;
 	width: 425px;
-	height: 260px;
+	height: 300px;
 	padding-left: 17px;
 
 	border: 0px;
@@ -104,6 +104,13 @@ form > div{
 	resize:none;
 }
 
+.load_foto_onput{
+	width: 70px;
+
+	cursor: pointer;
+	margin-left: 7px;
+	margin-bottom: 10px;
+}
 
 .checkbox{
 	width: 16px;

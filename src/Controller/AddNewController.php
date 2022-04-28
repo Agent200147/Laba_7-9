@@ -13,10 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Doctrine\Persistence\ManagerRegistry;
 use App\Form\AddNewsType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
 class AddNewController extends AbstractController
 {
     #[Route('/addNew', name: 'app_addNew')]
-    public function register(ManagerRegistry $doctrine, Request $request): Response
+    public function register(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         if ($this->getUser() == null ) {
             return $this->redirectToRoute('app_index');
@@ -27,7 +29,7 @@ class AddNewController extends AbstractController
 
 
         $form->handleRequest($request);
-        $UserRepository = $doctrine->getRepository(User::class);
+        // $UserRepository = $doctrine->getRepository(User::class);
         $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,8 +38,28 @@ class AddNewController extends AbstractController
             $date = new \DateTime('@'.strtotime('now + 3 hours'));
             $new->setDateLoad($date);
             $new->setViewsNum(0);
-            $new->setUser($user);  
+            $new->setUser($user); 
 
+            $filename = $form->get('fotopath')->getData();
+            if ($filename) {
+                $originalFilename = pathinfo($filename->getClientOriginalName(), PATHINFO_FILENAME);
+                // это необходимо для безопасного включения имени файла в качестве части URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$filename->guessExtension();
+
+                // Переместите файлв каталог, где хранятся брошюры
+                try {
+                    $filename->move(
+                        $this->getParameter('newsfoto_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    return $this->render('Forms/AddNewsForm/index.html.twig', [
+                        'form' => $form->createView(),
+                    ]);
+                }
+                $new->setfotopath($newFilename);
+            }
             $manager = $doctrine->getManager();
             $manager->persist($new);
             $manager->flush();

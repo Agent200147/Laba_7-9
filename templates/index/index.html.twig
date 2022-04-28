@@ -9,18 +9,20 @@
     )) }} #}
         <div class="posts col-md-9 container ">
             {% for new in news %}
-                <a href="/news/{{new.id}}"><div class="post animate__animated animate__fadeInUp animate__fast">
-                    <div class="name">{{new.name}}</div>
-                    <div class="annotation">{{new.description}}</div>
+                {% if new.active == true %}
+                    <a href="/news/{{new.id}}"><div class="post animate__animated animate__fadeInUp animate__fast">
+                        <div class="name">{{new.name}}</div>
+                        <div class="annotation">{{new.description}}</div>
 
-                    <div class="low">
-                        <div class="date">{{new.dateLoad|date}}</div> 
-                        <div class="viewsNum">1<img src="img/com.svg" alt=""></div>
+                        <div class="low">
+                            <div class="date">{{new.dateLoad|date}}</div> 
+                            <div class="viewsNum">{{new.comments|length}}<img src="img/com.svg" alt=""></div>
 
-                        <div class="viewsNum">{{new.viewsNum}}<img src="img/view.svg" alt=""></div>
-                    </div>
-                    <div class="linePost col-md-12"></div>
-                </div></a>
+                            <div class="viewsNum">{{new.viewsNum}}<img src="img/view.svg" alt=""></div>
+                        </div>
+                        <div class="linePost col-md-12"></div>
+                    </div></a>
+                {% endif %}
             {% endfor %}
             <div class="element"></div>
         </div>

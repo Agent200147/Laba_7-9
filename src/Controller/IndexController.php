@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Entity\User;
+use App\Entity\Comments;
+
 use App\Form\AddNewsType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +25,8 @@ class IndexController extends AbstractController
 
         $repository = $doctrine->getRepository(News::class);
         $news = $repository->findAll();
+
+        
         $user = new User();
         $form_r = $this->createForm(RegistrationFormType::class, $user);
         $form_r->handleRequest($request);

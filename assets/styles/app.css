@@ -28,10 +28,11 @@ a:hover{
 	color: black;
 }
 
-.mainContainer{
+.mainContainer, .bg{
 	padding: 0;
 	background: #F0F0F0;
 
+	border-radius: 0 0 14px 14px;
 }
 
 .navbar{
@@ -297,6 +298,18 @@ a:hover{
 	margin-top: 38px;
 	width: 85%;
 	margin-bottom: 22px;
+}
+
+.fotoNew{
+	display: flex;
+	justify-content: center;
+
+	margin-top: -98px;
+}
+
+.fotoNew img{
+
+	border: 3px solid gray;
 }
 
 .avtor--wrapper{
