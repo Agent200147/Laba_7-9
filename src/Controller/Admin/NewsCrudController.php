@@ -31,6 +31,7 @@ class NewsCrudController extends AbstractCrudController
             IntegerField::new('views_num', 'Кол-во просмотров'),
             //DateTimeField::new('date_load')->hideOnForm(),
             AssociationField::new('user', 'Пользователь'),
+            BooleanField::new('active'),
         ];
     }
     

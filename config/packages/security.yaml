@@ -19,6 +19,13 @@ security:
             custom_authenticator: App\Security\AppCustomAuthenticator
             logout:
                 path: app_logout
+        api:
+           pattern: ^/api/
+           stateless: true
+           custom_authenticator: App\Security\ApiTokenAuthenticator
+           provider: users_in_memory
+
+
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -32,6 +39,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/api/, roles: ROLE_USER }
 
 when@test:
     security:

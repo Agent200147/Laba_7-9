@@ -8,6 +8,7 @@ use App\Entity\Comments;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Uid\Uuid;
 
 class AppFixtures extends Fixture
 {
@@ -37,6 +38,8 @@ class AppFixtures extends Fixture
         $user->setEmail('www@mail.ru');
         $user->setRoles($roles_user);
         $user->setPassword($password);
+        $user->setApiToken(Uuid::v1()->toRfc4122());
+
         $manager->persist($user);
 
         //Админ
@@ -46,6 +49,8 @@ class AppFixtures extends Fixture
         $user->setEmail('Agent47@mail.ru');
         $user->setRoles($roles);
         $user->setPassword($password);
+        $user->setApiToken(Uuid::v1()->toRfc4122());
+
         $manager->persist($user);
 
         //Админ
@@ -55,7 +60,8 @@ class AppFixtures extends Fixture
         $user->setEmail('qqqqqq@mail.ru');
         $user->setRoles($roles);
         $user->setPassword($password);
-
+        $user->setApiToken(Uuid::v1()->toRfc4122());
+        
         $manager->persist($user);
 
         // create 20 products! Bam!
