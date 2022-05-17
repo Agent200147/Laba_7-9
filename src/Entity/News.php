@@ -22,11 +22,13 @@ class News
     #[ORM\Column(type: 'integer')]
     private $id;
 
+
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
     #[ORM\Column(type: 'datetime', options:["default", "CURRENT_TIMESTAMP"])]
     private $dateLoad;
+
 
     #[ORM\Column(type: 'text')]
     private $description;
@@ -37,6 +39,7 @@ class News
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'News')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
 
     #[ORM\Column(type: 'text')]
     private $content;

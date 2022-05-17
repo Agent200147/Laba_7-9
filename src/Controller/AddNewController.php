@@ -21,7 +21,7 @@ class AddNewController extends AbstractController
     public function register(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         if ($this->getUser() == null ) {
-            return $this->redirectToRoute('app_index');
+            return $this->redirectToRoute('app_login');
        }
 
         $new = new News();

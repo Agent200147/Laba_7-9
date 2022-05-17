@@ -13,7 +13,7 @@
         {% if is_granted('ROLE_ADMIN') %}
             <a href="/admin" class="btn btn-md btn-outline-info">Админка</a>
         {% endif %}
-            <a href="/addNew"><input type="button" name="zareg" class="btn btn-md btn-outline-secondary" value="Добавление новости"></a>
+            <a href="/addNew" class="add__new"><input type="button" name="add__new" class="btn btn-md btn-outline-secondary" value="Добавление новости"></a>
 
             <a href="/logout"><input type="button" name="zareg" class="btn btn-md btn-outline-danger" value="Выйти"></a>
 
@@ -21,7 +21,7 @@
     {% else %}
     <div class="buttons">
         <a href="/register"><input type="button" name="zareg" class="reg" value="Зарегистрироваться"></a>
-        <a href="/login"><input type="button" name="vhod" class="vhod" value="Войти"></a>
+        <a href="/login" class="vhod--link"><input type="button" name="vhod" class="vhod" value="Войти"></a>
     </div>
 
     {% endif %}

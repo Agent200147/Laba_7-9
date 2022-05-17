@@ -56,14 +56,21 @@ var form = document.querySelector('form');
 var form_register = document.querySelector('.form--register');
 var form_login = document.querySelector('.LoginForm--content');
 
-var close_registrationForm_btn  = document.querySelector('.close--registrationForm');
-var close_LoginForm_btn  = document.querySelector('.close--LoginForm');
+var form_addNew = document.querySelector('.form--loadNews--wrapper');
+var form_addNew_fotopath = document.querySelector('.load_foto_onput');
+form_addNew.addEventListener('click', () => console.log(form_addNew_fotopath.value))
 
-close_registrationForm_btn.addEventListener('click', () => {form_register.reset()})
-close_LoginForm_btn.addEventListener('click', () => {
-    form_login.email.value = " ";
-    form_login.password.value = "";
-})
+// console.log(form_addNew.add_news[name])
+console.log('test')
+
+// var close_registrationForm_btn  = document.querySelector('.close--registrationForm');
+// var close_LoginForm_btn  = document.querySelector('.close--LoginForm');
+
+// close_registrationForm_btn.addEventListener('click', () => {form_register.reset()})
+// close_LoginForm_btn.addEventListener('click', () => {
+//     form_login.email.value = " ";
+//     form_login.password.value = "";
+// })
 // form_register.reset()
 // form_login.email.value = " ";
 // form_login.password.value = "";

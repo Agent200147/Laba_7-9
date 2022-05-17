@@ -10,6 +10,12 @@ security:
                class: App\Entity\User
                property: email
     firewalls:
+        api:
+            pattern: ^/api/
+            stateless: true
+            custom_authenticator: App\Security\ApiTokenAuthenticator
+            provider: users_in_memory
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -19,11 +25,6 @@ security:
             custom_authenticator: App\Security\AppCustomAuthenticator
             logout:
                 path: app_logout
-        api:
-           pattern: ^/api/
-           stateless: true
-           custom_authenticator: App\Security\ApiTokenAuthenticator
-           provider: users_in_memory
 
 
                 # where to redirect after logout
@@ -56,3 +57,5 @@ when@test:
             
             role_hierarchy:
                algorithm: auto
+
+

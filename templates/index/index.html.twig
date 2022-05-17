@@ -10,7 +10,7 @@
         <div class="posts col-md-9 container ">
             {% for new in news %}
                 {% if new.active == true %}
-                    <a href="/news/{{new.id}}"><div class="post animate__animated animate__fadeInUp animate__fast">
+                    <a href="/news/{{new.id}}" class="post-link"><div class="post animate__animated animate__fadeInUp animate__fast">
                         <div class="name">{{new.name}}</div>
                         <div class="annotation">{{new.description}}</div>
 

@@ -180,14 +180,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getNews(): Collection
     {
-        return $this->news;
+        return $this->News;
     }
 
     public function addNews(News $news): self
     {
         if (!$this->news->contains($news)) {
             $this->news[] = $news;
-            $news->setUserId($this);
+            $news->setUser($this);
         }
 
         return $this;
@@ -197,8 +197,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->news->removeElement($news)) {
             // set the owning side to null (unless already changed)
-            if ($news->getUserId() === $this) {
-                $news->setUserId(null);
+            if ($news->getUser() === $this) {
+                $news->setUser(null);
             }
         }
 

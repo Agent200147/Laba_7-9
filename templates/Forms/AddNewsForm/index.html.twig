@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+
+{% block title %}Добавление новости{% endblock %}
+
 {% block body %}
 <div class="container bg ">
 {{ include('components/header.html.twig') }}
@@ -8,7 +11,7 @@
 {{ form_start(form, { 'attr': {'class': 'form--loadNews--wrapper col-md-8 animate__animated animate__fadeIn animate__slow'} }) }}
     <div class="form--loadNews col-md-12">
         <div class="formleft">
-            {{ form_row(form.fotopath, { 'attr': {'placeholder': 'Фото новости', 'class': 'load_foto_onput'}, 'label': 'Фото новости' }) }}
+            {{ form_row(form.fotopath, { 'attr': {'placeholder': 'Фото новости', 'class': 'load_foto_onput', 'name': 'fotopath'}, 'label': 'Фото новости' }) }}
             {{ form_widget(form.name, { 'attr': {'placeholder': 'Название новости'}, 'label': ' ' }) }}
             {{ form_widget(form.description, { 'attr': {'placeholder': 'Аннотация'}, 'label': ' ' }) }}
         </div>
@@ -22,13 +25,14 @@
     {% if not form.vars.valid %}
                     <ul>
                     {% for error in form.vars.errors.form.getErrors(true) %}
-                        <li class="error">{{ error.message }}</li>
+                        <div class="error">{{ error.message }}</div>
                     {% endfor %}
                     </ul>
-                {% endif %}
+    {% endif %}
         <button type="submit" class="btn btn-primary load">Загрузить</button>
     </div>
 
+    {{ form_rest(form) }}
 {{ form_end(form) }}
 
 </div>

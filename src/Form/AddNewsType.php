@@ -10,8 +10,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddNewsType extends AbstractType
 {
@@ -25,11 +27,38 @@ class AddNewsType extends AbstractType
                 'min' => 3,
                 
             ]),
+                new NotBlank([
+                    'message' => 'Пожалуйста введите название новости',
+                ]),
 
         ],
         ])
-        ->add('description')
-        ->add('content')
+        ->add('description', TextareaType::class, [
+
+            'required' => true,
+            'constraints' => [new Length([
+                'min' => 3,
+
+            ]),
+                new NotBlank([
+                    'message' => 'Пожалуйста введите пароль',
+                ]),
+
+            ],
+        ])
+        ->add('content', TextareaType::class, [
+
+            'required' => true,
+            'constraints' => [new Length([
+                'min' => 3,
+
+            ]),
+                new NotBlank([
+                    'message' => 'Пожалуйста введите пароль',
+                ]),
+
+            ],
+        ])
         ->add('fotopath', FileType::class, [
                 'label' => 'Brochure (PDF file)',
                 // неотображенное означает, что это поле не ассоциировано ни с одним свойством сущности
